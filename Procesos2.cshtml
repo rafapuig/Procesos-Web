@@ -1,0 +1,30 @@
+﻿@using System.Diagnostics;
+
+@{
+	var processes = new List<ProcessData>();
+	foreach(var process in Process.GetProcesses())
+	{	
+		if (process.WorkingSet64 >= 20*1024*1024)
+		{
+			processes.Add(new ProcessData { Id=process.Id,
+				Name=process.ProcessName, Memory=process.WorkingSet64 });
+		}
+	}    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+		<ol>
+			@foreach(var p in processes)
+			{
+				<li>Id=@p.Id nombre=@p.Name memoria=@p.Memory</li>   	
+			}
+		</ol>        
+    </body>
+</html>

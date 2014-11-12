@@ -1,0 +1,26 @@
+﻿@using System.Diagnostics;
+
+@{
+	List<string> processes = new List<string>();
+	foreach(Process process in Process.GetProcesses())
+	{
+		processes.Add(process.ProcessName);
+	}    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+		<ol>
+			@foreach(var p in processes)
+			{
+				<li>@p</li>   	
+			}
+		</ol>        
+    </body>
+</html>
